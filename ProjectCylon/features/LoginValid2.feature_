@@ -1,0 +1,12 @@
+Feature: Test login
+
+Scenario Outline: Valid Case #2
+	Given User has [WarRoomLoginPage] open
+	And No user currently logged in
+	When User logs in with username '<UserName>' and password '<Password>'
+	Then The system displays [WarRoomApplicationPage]	
+	
+	Examples: Valid Case #2 
+	| UserName | Password |
+	| managerdemo | managerdemo!|
+	| agentdemo1 | agentdemo1!|

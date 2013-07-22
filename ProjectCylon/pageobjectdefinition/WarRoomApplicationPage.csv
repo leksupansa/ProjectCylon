@@ -1,0 +1,12 @@
+##Page##,,,,,,,,,
+Name:,WarRoomApplicationPage,,,,,,,,
+Title:,Warroom,,,,,,,,
+URL:,http://tools.thothmedia.com/warroom_new/,,,,,,,,
+VerifyWithURL:,TRUE,,,,,,,,
+NeedLogin:,TRUE,,,,,,,,
+LoginFunction:,WarRoomLogin,,,,,,,,
+,,,,,,,,,
+##Elements##,ObjectName,Name,LocatingMethod,Locator,PreCheck,ObjectType,DefaultState,DefaultValue,CheckAttribute
+Element:,menu,menu,xpath,"//*[@id=""menu-manager""]/div/div/a",,,,,
+Element:,logout,logout,xpath,/html/body/div[1]/div[1]/div[2]/div/a,,,,,
+Element:,currentuser,currentuser,xpath,"//*[@id=""username-str""]",,,,,

@@ -1,0 +1,12 @@
+##Page##,,,,,,,,,
+Name:,WarRoomLoginPage,,,,,,,,
+Title:,Warroom,,,,,,,,
+URL:,http://tools.thothmedia.com/warroom_new/,,,,,,,,
+VerifyWithURL:,TRUE,,,,,,,,
+NeedLogin:,FALSE,,,,,,,,
+,,,,,,,,,
+##Elements##,ObjectName,Name,LocatingMethod,Locator,PreCheck,ObjectType,DefaultState,DefaultValue,CheckAttribute
+Element:,username,username,xpath,/html/body/div/div[1]/div[2]/ul/li/form/input[1],,text,,,"style=""padding: 0px; height: 18px;""
+class=""input-small"""
+Element:,password,password,xpath,/html/body/div/div[1]/div[2]/ul/li/form/input[2],,,,,
+Element:,login,login,xpath,/html/body/div/div[1]/div[2]/ul/li/form/button,,,,,
