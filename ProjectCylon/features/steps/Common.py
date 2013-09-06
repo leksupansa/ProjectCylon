@@ -11,14 +11,16 @@ import pageobject.AllPages
 def step(context, PageName):
 	Page = World.FindPage( PageName )
 	if Page is not None :
-		return Page.Go()
+		if Page.Go()  == False:
+			assert False
 	
 #This does all When, And	
 @when ("User enters '{Value}' to [{Name}]")	
 def step(context, Name, Value):
 	Element = World.FindElement(Name)
 	if Element is not None :
-		return Element.SendKeys(Value)
+		if Element.SendKeys(Value) == False:
+			assert False
 	
 @when ('User clicks [{Button}] button')
 def step(context, Button):
@@ -30,11 +32,13 @@ def step(context, Button):
 def step(context, PageName):
 	Page = World.FindPage( PageName )
 	if Page is not None :
-		return Page.Verify()
+		if Page.Verify() == False:
+			assert False
 	
 @Then ("The [{Name}] shows '{Value}'")
 def step(context, Name, Value):
 	Element = World.FindElement(Name)
 	if Element is not None :
-		return Element.VerifyText(Value)
+		if Element.VerifyText(Value) == False:
+			assert False
 	

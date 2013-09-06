@@ -11,7 +11,8 @@ def step( context ):
 	if World.FindElement( "login" ).Verify():
 		return True
 	else:
-		return World.FindElement( "logout" ).Click()
+		if World.FindElement( "logout" ).Click() == False:
+			assert False
 
 @when (u"User logs in with username '{UserName}' and password '{Password}'")
 def  step( context, UserName, Password ):
@@ -29,7 +30,7 @@ def  step( context, User ):
 		return True
 	else:
 		print "Error! User Not Found"
-		return False
+		assert False
 	
 @when (u"User logs in with Current User profile")
 def  step( context ):

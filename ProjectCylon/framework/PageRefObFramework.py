@@ -95,6 +95,7 @@ class Element ( object ):
 			return False
 		element = self.Get()
 		element.click()
+		return True
 
 #Verify Enable and Disable ---------------------------------------------------------------------------
 	def VerifyIsEnabled( self ):
@@ -106,7 +107,7 @@ class Element ( object ):
 			printc( "passed" + "\n", "bright green" )
 			return True
 		else:
-			printc( "passed" + "\n", "bright red" )
+			printc( "failed" + "\n", "bright red" )
 			return False
 
 	def VerifyIsDisabled( self ):
@@ -118,7 +119,7 @@ class Element ( object ):
 			printc( "passed" + "\n", "bright green" )
 			return True
 		else:
-			printc( "passed" + "\n", "bright red" )
+			printc( "failed" + "\n", "bright red" )
 			return False
 #Verify Enable and Disable ---------------------------------------------------------------------------		
 
@@ -133,7 +134,7 @@ class Element ( object ):
 			printc( "passed" + "\n", "bright green" )
 			return True
 		else:
-			printc( "passed" + "\n", "bright red" )
+			printc( "failed" + "\n", "bright red" )
 			return False
 	
 	def VerifyIsUncheck( self ):
@@ -145,7 +146,7 @@ class Element ( object ):
 			printc( "passed" + "\n", "bright green" )
 			return True
 		else:
-			printc( "passed" + "\n", "bright red" )
+			printc( "failed" + "\n", "bright red" )
 			return False	
 #Verify Check and Uncheck ----------------------------------------------------------------------------
 		
@@ -230,10 +231,11 @@ class Element ( object ):
 				return False
 		element = self.Get()
 		element.send_keys( textinput )
+		return True
 		
 	def VerifyText(  self, expectedresult ):
 		if (self.Verify() != True):
-			return
+			return False
 		element = self.Get()
 		result = str(element.text.encode('utf-8','ignore'))
 		expectedresult = str(expectedresult.encode('utf-8','ignore'))
@@ -241,18 +243,21 @@ class Element ( object ):
 			print " Verify Text : '<blank>' : ",
 			if result == "":
 				printc ( "passed\n", "bright green")
+				return True
 			else:
 				printc ( "failed\n", "bright red")
 				print "Got '",
-				printc ( str(result) + "\n", "bright yellow" ) 			
+				printc ( str(result) + "'\n", "bright yellow" ) 
+				return False
 		else :
 			print " Verify Text : '" + str(expectedresult) + "': ",
 			if result.find(expectedresult) != -1:
 				printc ( "passed\n", "bright green")
+				return True
 			else:
 				printc ( "failed", "bright red")
 				print "Got '",
-				printc ( str(result) + "\n", "bright yellow" )
+				printc ( str(result) + "'\n", "bright yellow" )
 				return False
 	
 	def VerifyValue(  self, value ):
@@ -265,11 +270,14 @@ class Element ( object ):
 		if value == "":
 			if result == "":
 				print " Verify Value : <blank> passed"
+				return True
 			else:
-				print " Verify Value : <blank> failed got " + result + " instead"			
+				print " Verify Value : <blank> failed got " + result + " instead"
+				return False
 		else :
 			if result.find(value) != -1:
 				print " Verify Value : " + str(value) + " passed"
+				return True
 			else:
 				print " Verify Value : " + str(value) + " failed got " + result + " instead"
 				return False	
@@ -321,7 +329,7 @@ class Page ( object ):
 		#World.GoTo( self.url )
 		World.GoToPage( self )
 		time.sleep(2)
-		self.Verify()
+		return self.Verify()
 		
 	def Verify( self ):
 		wait = ui.WebDriverWait(World.driver,10)
