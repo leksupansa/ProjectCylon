@@ -79,8 +79,32 @@ class Element ( object ):
 		self.availablevalue = availablevalue
 		self.checkattribute = checkattribute
 	
+	def check_exists( self ):
+		if self.locatingmethod == "name":
+			try:
+				World.driver.find_element_by_name(self.locator)
+			except NoSuchElementException:
+				return False
+			return True
+		elif self.locatingmethod == "xpath":
+			try:
+				World.driver.find_element_by_xpath(self.locator)
+			except NoSuchElementException:
+				print "notfound"
+				return False
+			return True
+		Assert (False, "Invalid Locator Method")
+	
 	def Get( self ):
 		element = None
+		
+		wait = ui.WebDriverWait(World.driver,3)
+		try:
+			print "checking"
+			wait.until(lambda driver : check_exists() != False)
+		except:
+			pass
+			
 		try:
 			if self.locatingmethod == "name":
 				element = World.driver.find_element_by_name(self.locator)

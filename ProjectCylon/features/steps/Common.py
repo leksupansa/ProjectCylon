@@ -28,6 +28,12 @@ def step(context, Button):
 	if Element is not None :
 		return Element.Click()
 
+@when ('User clicks [{Link}] link')
+def step(context, Link):
+	Element = World.FindElement(Link)
+	if Element is not None :
+		return Element.Click()		
+		
 @Then ("The system displays [{PageName}]")
 def step(context, PageName):
 	Page = World.FindPage( PageName )
