@@ -12,7 +12,7 @@ echo "-------------------------------------------"
 
 OPTION="$1"
 
-if [ "$OPTION" = 1 ] ; then 
+if [ "$OPTION" != 1 ] ; then 
 cd pageobjectdefinition
 ./GenAllPageObject.sh
 cd ../

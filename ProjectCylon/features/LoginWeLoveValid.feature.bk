@@ -1,0 +1,12 @@
+@ReloadContext
+@valid_login
+Scenario: Valid Case
+	Given User has [WeLoveHomePage] open
+	When User clicks [login] Link 
+	Then The system displays [WeLoveSigninPage]
+        When User enters 'leesupansa@gmail.com' to [username]
+        And User enters 'As0laris' to [password]
+        And User clicks [signin] button
+        Then the system displays [WeloveHomePage]
+        And the [currentuser] shows 'Supansa'
+	
