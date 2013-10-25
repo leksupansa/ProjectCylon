@@ -1,25 +1,66 @@
-#!/bin/sh
+#!/bin/bash
 
 # Purpose: Generate Object and run Automated test
 # Author: Lek
 # Created Date: 2013-10-09
+# Updated Date: 2013-10-25: Refactor, add option 3,4, help
 
+
+# Print out Menu Function
+Menu(){
 echo "----------------[Run.sh]-------------------"
 echo " USAGE $./Run.sh <option>          "
-echo " DEFAULT:: Automatic Generate object before run"
-echo " <Option> = 1:: NOT generate object before run"
+echo " <option> = "
+echo " DEFAULT | VOID | ANY :: GENERATE AND RUN"
+echo " 1:: RUN ONLY"
+echo " 2:: GENERATE ONLY"
+echo " 3:: GENERATE -> CHECKELEMENT"
+echo " 4:: GENERATE -> CHECKELEMENT -> RUN"
+echo ""
+echo " <Option> = help:: SHOW MENU"
 echo "-------------------------------------------"
+}
 
+# Generate Object Function
+Generate(){
+    cd pageobjectdefinition
+    ./GenAllPageObject.sh
+    cd ../
+    echo "GENERATE OBJECT(S) SUCCESSFULLY"
+}
+
+# Run behave Function
+Run(){
+    echo "ENTER RUN FUNCTION"
+    #behave --logging-level INFO --color --no-source --no-skipped    
+}
+
+# Check Element Function
+Check(){
+    python CheckElements.py 
+}
+
+
+# Main Command
+Menu
 OPTION="$1"
 
-if [ "$OPTION" != 1 ] ; then 
-cd pageobjectdefinition
-./GenAllPageObject.sh
-cd ../
-fi
+case "$OPTION" in
 
-#echo "run sth..."
-behave --logging-level INFO --color --no-source --no-skipped
+    1) Run
+    ;;
+    2) Generate
+    ;;
+    3) Generate; Check
+    ;;
+    4) Generate; Check; Run
+    ;;
+    [hH] | help | HELP ) Menu
+    ;;
+    *) echo "all case"
+    ;;
+esac
+
 
 
 
