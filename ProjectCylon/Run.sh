@@ -11,7 +11,7 @@ Menu(){
 echo "----------------[Run.sh]-------------------"
 echo " USAGE $./Run.sh <option>          "
 echo " <option> = "
-echo " DEFAULT | VOID | ANY :: GENERATE AND RUN"
+echo " DEFAULT | VOID | ANY :: GENERATE -> RUN"
 echo " 1:: RUN ONLY"
 echo " 2:: GENERATE ONLY"
 echo " 3:: GENERATE -> CHECKELEMENT"
@@ -31,8 +31,8 @@ Generate(){
 
 # Run behave Function
 Run(){
-    echo "ENTER RUN FUNCTION"
-    #behave --logging-level INFO --color --no-source --no-skipped    
+    #echo "ENTER RUN FUNCTION"
+    behave --logging-level INFO --color --no-source --no-skipped    
 }
 
 # Check Element Function
@@ -57,7 +57,7 @@ case "$OPTION" in
     ;;
     [hH] | help | HELP ) Menu
     ;;
-    *) echo "all case"
+    *) Generate; Run
     ;;
 esac
 
